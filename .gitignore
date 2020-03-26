@@ -28,3 +28,6 @@
 
 # run
 scaffold-gin
+
+# mac
+.DS_Store
