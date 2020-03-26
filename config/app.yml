@@ -1,0 +1,46 @@
+app:
+  name: scaffold-gin
+  runmode: dev    # dev开发环境 test测试环境 prod线上环境
+database:
+  driver: mysql
+  mysql:
+    charset: utf8
+    host: 127.0.0.1:3306
+    name: test
+    password: 123456-abc
+    pool:
+      max: 20
+      min: 5
+    ssl: false
+    user: root
+
+  source: root:123456-abc@tcp(127.0.0.1:3306)/test?charset=utf8&parseTime=True&loc=Local
+logger:
+  dir: tmp/logs
+redis:
+  host: 127.0.0.1:6379
+  auth:
+  db: 0
+  pool:
+    min: 3
+    max: 20
+event:
+  frontend-user-login: frontend.user.login
+ssl:
+  enable: false
+  cache-dir: tmp/.ssl
+# 跨域
+cors:
+  enable: true
+  allow_credentials: false
+  allow_headers:
+    - '*'
+  allow_methods:
+    - GET
+    - POST
+    - OPTIONS
+    - PUT
+    - DELETE
+  allow_origins:
+    - '*'
+  max_age: 7200
