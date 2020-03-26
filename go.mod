@@ -12,6 +12,7 @@ require (
 	github.com/matchstalk/redisqueue v1.0.3
 	github.com/sirupsen/logrus v1.5.0
 	github.com/skip2/go-qrcode v0.0.0-20191027152451-9434209cb086
+	github.com/smartystreets/goconvey v1.6.4
 	github.com/spf13/cobra v0.0.6
 	github.com/spf13/viper v1.4.0
 	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd

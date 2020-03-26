@@ -12,6 +12,16 @@ import (
 
 const DriverMysql = "mysql"
 
+type Dao struct {
+	Tx *gorm.DB
+}
+
+func (e *Dao) ifOrmNil() {
+	if e.Tx == nil {
+		e.Tx = gdb.GetDB()
+	}
+}
+
 func Setup() {
 	host := viper.GetString("database.mysql.host")
 	user := viper.GetString("database.mysql.user")
@@ -34,6 +44,9 @@ func Setup() {
 		if gin.Mode() != gin.ReleaseMode {
 			db.LogMode(true)
 		}
+	}
+	if viper.GetBool("database.singular_table") {
+		db.SingularTable(true)
 	}
 	gdb.SetDB(db)
 }

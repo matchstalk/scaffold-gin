@@ -51,5 +51,6 @@ func migrateModel() []interface{} {
 	return []interface{}{
 		&migrate.Migrate{},
 		&models.User{},
+		&models.Application{},
 	}
 }

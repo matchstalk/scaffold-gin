@@ -2,6 +2,7 @@ app:
   name: scaffold-gin
   runmode: dev    # dev开发环境 test测试环境 prod线上环境
 database:
+  singular_table: true
   driver: mysql
   mysql:
     charset: utf8
