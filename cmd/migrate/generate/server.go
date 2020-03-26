@@ -12,16 +12,16 @@ import (
 
 const (
 	migrationPath = "cmd/migrate/migration"
-	toolsPath = "cmd/migrate/cmd_tools"
+	toolsPath     = "cmd/migrate/cmd_tools"
 )
 
 var (
-	config string
-	name string
-	tool bool
+	config   string
+	name     string
+	tool     bool
 	StartCmd = &cobra.Command{
-		Use:     "generate",
-		Short:   "Migrate generate about gdb operator",
+		Use:   "generate",
+		Short: "Migrate generate about gdb operator",
 		PreRun: func(cmd *cobra.Command, args []string) {
 			setup()
 		},
@@ -62,10 +62,10 @@ func generateTool() {
 	method := fmt.Sprintf("%s_tool", name)
 	f := NewFile("cmdTools")
 	f.Var().Params(
-		Id(name + "Cmd").Op("=").Op("&").Qual("github.com/spf13/cobra", "Command").Values(Dict{
-			Id("Use"): Lit(name + "Cmd"),
+		Id(name+"Cmd").Op("=").Op("&").Qual("github.com/spf13/cobra", "Command").Values(Dict{
+			Id("Use"):   Lit(name + "Cmd"),
 			Id("Short"): Lit("Migrate about gdb operator tool " + name),
-			Id("Run"): Id(name),
+			Id("Run"):   Id(name),
 		}),
 	)
 	f.Func().Id("init").Params().Block(
@@ -75,15 +75,13 @@ func generateTool() {
 		Id("cmd").Op("*").Qual("github.com/spf13/cobra", "Command"),
 		Id("args").Op("[]").String(),
 	).Block()
-	fmt.Println(method)
-	fmt.Printf("%#v", f)
 	err := f.Save(toolsPath + "/" + method + ".go")
 	if err != nil {
 		panic(err)
 	}
 }
 
-func generateMigration()  {
+func generateMigration() {
 	method := fmt.Sprintf("m_%d_%s_table", time.Now().Unix(), name)
 	f := NewFile("migration")
 	f.Func().
